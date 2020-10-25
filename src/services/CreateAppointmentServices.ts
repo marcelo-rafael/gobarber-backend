@@ -4,12 +4,6 @@ import { getCustomRepository } from 'typeorm';
 import Appointment from '../models/Appointment';
 import AppointmentsRepository from '../repositories/AppointmentsRepository';
 
-/**
- * Recebimento das informaçõs
- * Tratativa de erros/excessôes
- * Acesso ao repositório
- */
-
 interface RequestDTO {
   provider: string;
   date: Date;
@@ -21,7 +15,7 @@ class CreateAppointmentService {
 
     const appointmentDate = startOfHour(date);
 
-    const findAppointmentInSameDate = appointmentsRepository.findByDate(
+    const findAppointmentInSameDate = await appointmentsRepository.findByDate(
       appointmentDate,
     );
 
